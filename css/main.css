@@ -1,0 +1,30 @@
+/*******************************/
+/********* General CSS *********/
+/*******************************/
+@import url('./variables.css');
+@import url('./boostrap.4.4.1.css');
+@import url('./tags.css');
+/* @import url('./font_awasome.css'); */
+@import url('./fonts.css');
+@import url('./back_to_top.css');
+@import url('./top_bar.css');
+@import url('./nav_bar.css');
+@import url('./page_header.css');
+@import url('./carousel.css');
+@import url('./section_header.css');
+@import url('./feature.css');
+@import url('./about.css');
+@import url('./facts.css');
+@import url('./services.css');
+@import url('./video.css');
+@import url('./team.css');
+@import url('./faq.css');
+@import url('./testimonial.css');
+@import url('./blog.css');
+@import url('./single_post.css');
+@import url('./side_bar.css');
+@import url('./portfolio.css');
+@import url('./contact.css');
+@import url('./footer.css');
+@import url('./normalize.css');
+

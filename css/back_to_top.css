@@ -1,0 +1,28 @@
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: #fdbe33;
+  /* background: var(--yellow-light); */
+  color: #121518;
+  width: 84px;
+  height: 40px;
+  text-align: center;
+  line-height: 1;
+  font-size: 18px;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.3s;
+  z-index: var(--z-index-9);
+  border-radius: 10px;
+  /* filter: drop-shadow(10 10 4em #0f1aaa) !important; */
+}
+
+.back-to-top:hover {
+  /* color: #fdbe33; */
+  color: var(--white);
+  background: #4a6b8a;
+}
+
+.back-to-top i {
+  padding-top: 10px;
+}

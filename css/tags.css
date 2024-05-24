@@ -1,0 +1,47 @@
+body {
+  color: #666666;
+  background: var(--blue-formal);
+  font-family: global_font;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #030f27;
+}
+
+a {
+  color: #666666;
+  transition: .3s;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #fdbe33;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  background: var(--white);
+  /* background: var(--white-soft); */
+}
+
+.btn {
+  transition: .3s;
+}
+
+

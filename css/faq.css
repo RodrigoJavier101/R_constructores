@@ -1,0 +1,104 @@
+/*******************************/
+/*********** FAQs CSS **********/
+/*******************************/
+.faqs {
+  position: relative;
+  width: 100%;
+  padding: 45px 0;
+}
+
+.faqs .row {
+  position: relative;
+}
+
+.faqs .row::after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc(50% - .5px);
+  background: #fdbe33;
+}
+
+.faqs #accordion-1 {
+  padding-right: 15px;
+}
+
+.faqs #accordion-2 {
+  padding-left: 15px;
+}
+
+@media(max-width: 767.98px) {
+  .faqs .row::after {
+    display: none;
+  }
+
+  .faqs #accordion-1,
+  .faqs #accordion-2 {
+    padding: 0;
+  }
+
+  .faqs #accordion-2 {
+    padding-top: 15px;
+  }
+}
+
+.faqs .card {
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 0;
+}
+
+.faqs .card:last-child {
+  margin-bottom: 0;
+}
+
+.faqs .card-header {
+  padding: 0;
+  border: none;
+  background: #ffffff;
+}
+
+.faqs .card-header a {
+  display: block;
+  padding: 10px 25px;
+  width: 100%;
+  color: #121518;
+  font-size: 16px;
+  line-height: 40px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  transition: .5s;
+}
+
+.faqs .card-header [data-toggle="collapse"][aria-expanded="true"] {
+  background: #fdbe33;
+}
+
+.faqs .card-header [data-toggle="collapse"]:after {
+  font-family: 'font Awesome 5 Free';
+  content: "\f067";
+  float: right;
+  color: #fdbe33;
+  font-size: 12px;
+  font-weight: 900;
+  transition: .5s;
+}
+
+.faqs .card-header [data-toggle="collapse"][aria-expanded="true"]:after {
+  font-family: 'font Awesome 5 Free';
+  content: "\f068";
+  float: right;
+  color: #030f27;
+  font-size: 12px;
+  font-weight: 900;
+  transition: .5s;
+}
+
+.faqs .card-body {
+  padding: 20px 25px;
+  font-size: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-top: none;
+}

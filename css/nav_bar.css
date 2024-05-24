@@ -1,0 +1,101 @@
+/**********************************/
+/*********** Nav Bar CSS **********/
+/**********************************/
+.nav-bar {
+  position: relative;
+  background: #fdbe33;
+  transition: .3s;
+}
+
+.nav-bar .container-fluid {
+  padding: 0;
+}
+
+.nav-bar.nav-sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 1366px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+  z-index: 999;
+}
+
+.nav-bar .navbar {
+  height: 100%;
+  background: #030f27 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  padding: 10px 10px 8px 10px;
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fdbe33;
+  transition: none;
+}
+
+.nav-bar .dropdown-menu {
+  margin-top: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f8f9fa;
+}
+
+.nav-bar .btn {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 0;
+}
+
+.nav-bar .btn:hover {
+  color: #030f27;
+  background: #fdbe33;
+  border-color: #fdbe33;
+}
+
+@media (min-width: 992px) {
+  .nav-bar {
+    padding: 0 75px;
+  }
+
+  .nav-bar.nav-sticky {
+    padding: 0;
+  }
+
+  .nav-bar .navbar {
+    padding: 20px;
+  }
+
+  .nav-bar .navbar-brand {
+    display: none;
+  }
+
+  .nav-bar a.nav-link {
+    padding: 8px 15px;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nav-bar .navbar {
+    padding: 15px;
+  }
+
+  .nav-bar a.nav-link {
+    padding: 5px;
+  }
+
+  .nav-bar .dropdown-menu {
+    box-shadow: none;
+  }
+
+  .nav-bar .btn {
+    display: none;
+  }
+}
