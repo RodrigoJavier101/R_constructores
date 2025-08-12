@@ -32,7 +32,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
 
   <body>
@@ -210,21 +209,67 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="address"
-                      placeholder="Dirección"
+                      id="rut"
+                      placeholder="RUT (ej: 12.345.678-9)"
                       required
-                      data-validation-required-message="Ingrese su dirección"
+                      data-validation-required-message="Ingrese su RUT"
                     />
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="control-group">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="date"
+                      required
+                      data-validation-required-message="Seleccione una fecha"
+                    />
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="control-group">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="endDate"
+                      required
+                      data-validation-required-message="Seleccione la fecha de término"
+                    />
+                    <p class="help-block text-danger"></p>
+                  </div>
+
+                  <div class="control-group">
+                    <select
+                      class="form-control"
+                      id="servicePlace"
+                      required
+                      data-validation-required-message="Seleccione el lugar de servicio"
+                    >
+                      <option value="" disabled selected>
+                        Seleccione lugar de servicio
+                      </option>
+                      <option
+                        value="Parque Las Violetas Frente 1, dirección Rodoviario 8570, comuna de Cerro Navia"
+                      >
+                        Parque Las Violetas Frente 1, dirección Rodoviario 8570,
+                        comuna de Cerro Navia
+                      </option>
+                      <option
+                        value="Parque Las Violetas Frente 2, dirección Rodoviario 8570, comuna de Cerro Navia"
+                      >
+                        Parque Las Violetas Frente 2, dirección Rodoviario 8570,
+                        comuna de Cerro Navia
+                      </option>
+                    </select>
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
                     <input
                       type="text"
                       class="form-control"
-                      id="rut"
-                      placeholder="RUT (ej: 12.345.678-9)"
+                      id="address"
+                      placeholder="Domicilio"
                       required
-                      data-validation-required-message="Ingrese su RUT"
+                      data-validation-required-message="Ingrese su domicilio"
                     />
                     <p class="help-block text-danger"></p>
                   </div>
@@ -243,10 +288,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="fullAddress"
-                      placeholder="Domicilio completo"
+                      id="nationality"
+                      placeholder="Nacionalidad"
                       required
-                      data-validation-required-message="Ingrese domicilio completo"
+                      data-validation-required-message="Ingrese su nacionalidad"
                     />
                     <p class="help-block text-danger"></p>
                   </div>
@@ -254,26 +299,45 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="pensionSystem"
-                      placeholder="Sistema de previsión (AFP/ONP)"
+                      id="functions"
+                      placeholder="Funciones"
                       required
-                      data-validation-required-message="Ingrese sistema de previsión"
+                      data-validation-required-message="Ingrese sus funciones"
                     />
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
-                    <input
-                      type="text"
+                    <select
                       class="form-control"
-                      id="healthSystem"
-                      placeholder="Sistema de salud (Fonasa/Isapre)"
+                      id="afp"
                       required
-                      data-validation-required-message="Ingrese sistema de salud"
-                    />
+                      data-validation-required-message="Seleccione su AFP"
+                    >
+                      <option value="" disabled selected>Seleccione AFP</option>
+                      <option value="AFP Uno">AFP Uno</option>
+                      <option value="AFP Modelo">AFP Modelo</option>
+                      <option value="AFP Habitat">AFP Habitat</option>
+                      <option value="AFP Sta Maria">AFP Sta Maria</option>
+                    </select>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="control-group">
+                    <select
+                      class="form-control"
+                      id="health"
+                      required
+                      data-validation-required-message="Seleccione su sistema de salud"
+                    >
+                      <option value="" disabled selected>
+                        Seleccione Salud
+                      </option>
+                      <option value="FONASA">FONASA</option>
+                      <option value="ISAPRE">ISAPRE</option>
+                    </select>
                     <p class="help-block text-danger"></p>
                   </div>
                   <div>
-                    <button class="btn" type="submit" id="generatePdfButton">
+                    <button class="btn" type="button" id="generatePdfButton">
                       Generar PDF
                     </button>
                   </div>
@@ -387,56 +451,215 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-      // Cargar jsPDF
-      const { jsPDF } = window.jspdf;
+      // Esperar a que el DOM esté listo
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Página cargada y lista");
 
-      document
-        .getElementById("clientForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+        // Botón que dispara la acción
+        const button = document.getElementById("generatePdfButton");
+        if (!button) {
+          console.error(
+            "❌ No se encontró el botón con id 'generatePdfButton'"
+          );
+          return;
+        }
 
-          // Obtener valores del formulario
-          const name = document.getElementById("name").value;
-          const address = document.getElementById("address").value;
-          const rut = document.getElementById("rut").value;
-          const civilStatus = document.getElementById("civilStatus").value;
-          const fullAddress = document.getElementById("fullAddress").value;
-          const pensionSystem = document.getElementById("pensionSystem").value;
-          const healthSystem = document.getElementById("healthSystem").value;
+        // Calcular fecha de mañana
+        function getTomorrowISO() {
+          const today = new Date();
+          const tomorrow = new Date(today);
+          tomorrow.setDate(today.getDate() + 1);
+          return tomorrow.toISOString().split("T")[0];
+        }
 
-          // Crear PDF
-          const doc = new jsPDF();
-
-          // Título
-          doc.setFontSize(18);
-          doc.text("Datos del Cliente", 105, 20, { align: "center" });
-
-          // Subtítulo
-          doc.setFontSize(12);
-          doc.text("Información Personal", 20, 30);
-
-          // Datos en lista
-          const items = [
-            `Nombre: ${name}`,
-            `Dirección: ${address}`,
-            `RUT: ${rut}`,
-            `Estado Civil: ${civilStatus}`,
-            `Domicilio Completo: ${fullAddress}`,
-            `Sistema de Previsión: ${pensionSystem}`,
-            `Sistema de Salud: ${healthSystem}`,
-          ];
-
-          // Posición inicial
-          let y = 40;
-          doc.setFontSize(11);
-          items.forEach((item) => {
-            doc.text(item, 20, y);
-            y += 10;
-          });
-
-          // Guardar PDF
-          doc.save("datos_cliente.pdf");
+        // Establecer fecha por defecto al cargar
+        window.addEventListener("load", function () {
+          const dateInput = document.getElementById("date");
+          if (dateInput) {
+            dateInput.value = getTomorrowISO();
+          }
         });
+
+        // Evento click en el botón
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log("Botón 'Generar PDF' clickeado");
+
+          // Obtener valores
+          const name = document.getElementById("name").value.trim();
+          const rut = document.getElementById("rut").value.trim();
+          const address = document.getElementById("address").value.trim();
+          const civilStatus = document
+            .getElementById("civilStatus")
+            .value.trim();
+          const nationality = document
+            .getElementById("nationality")
+            .value.trim();
+          const functions = document.getElementById("functions").value.trim();
+          const afp = document.getElementById("afp").value;
+          const health = document.getElementById("health").value;
+          const date = document.getElementById("date").value;
+          const endDate = document.getElementById("endDate").value; // Fecha de término
+          const servicePlace = document.getElementById("servicePlace").value; // Lugar de servicio
+
+          // Limpiar errores
+          const errors = document.querySelectorAll(".help-block.text-danger");
+          errors.forEach((el) => (el.textContent = ""));
+
+          let hasError = false;
+
+          if (!name) {
+            document.querySelector("#name ~ .help-block").textContent =
+              "El nombre es obligatorio.";
+            hasError = true;
+          }
+          if (!rut) {
+            document.querySelector("#rut ~ .help-block").textContent =
+              "El RUT es obligatorio.";
+            hasError = true;
+          }
+          if (!address) {
+            document.querySelector("#address ~ .help-block").textContent =
+              "El domicilio es obligatorio.";
+            hasError = true;
+          }
+          if (!civilStatus) {
+            document.querySelector("#civilStatus ~ .help-block").textContent =
+              "El estado civil es obligatorio.";
+            hasError = true;
+          }
+          if (!nationality) {
+            document.querySelector("#nationality ~ .help-block").textContent =
+              "La nacionalidad es obligatoria.";
+            hasError = true;
+          }
+          if (!functions) {
+            document.querySelector("#functions ~ .help-block").textContent =
+              "Las funciones son obligatorias.";
+            hasError = true;
+          }
+          if (!afp) {
+            document.querySelector("#afp ~ .help-block").textContent =
+              "Debe seleccionar una AFP.";
+            hasError = true;
+          }
+          if (!health) {
+            document.querySelector("#health ~ .help-block").textContent =
+              "Debe seleccionar un sistema de salud.";
+            hasError = true;
+          }
+          if (!date) {
+            document.querySelector("#date ~ .help-block").textContent =
+              "La fecha es obligatoria.";
+            hasError = true;
+          }
+
+          // Mostrar alert si hay errores
+          if (hasError) {
+            alert("Por favor, complete todos los campos obligatorios.");
+            console.warn("Hay campos vacíos");
+            return;
+          }
+
+          // Formatear fecha para el PDF
+          const formattedDate = new Date(date).toLocaleDateString("es-ES");
+
+          try {
+            // ✅ Generar PDF
+            const doc = new window.jspdf.jsPDF();
+
+            doc.setFontSize(18);
+            doc.text("Datos del Empleado", 105, 20, { align: "center" });
+
+            doc.setFontSize(12);
+            doc.text("Información Laboral y Personal", 20, 30);
+
+            const items = [
+              `Nombre: ${name}`,
+              `RUT: ${rut}`,
+              `Fecha: ${formattedDate}`,
+              `Domicilio: ${address}`,
+              `Estado Civil: ${civilStatus}`,
+              `Nacionalidad: ${nationality}`,
+              `Funciones: ${functions}`,
+              `AFP: ${afp}`,
+              `Salud: ${health}`,
+            ];
+
+            let y = 40;
+            doc.setFontSize(11);
+            items.forEach((item) => {
+              doc.text(item, 20, y);
+              y += 10;
+            });
+
+            doc.save(`contrato_${name.split(" ")[0]}.pdf`);
+            console.log("✅ PDF generado y descargado");
+          } catch (error) {
+            console.error("❌ Error al generar el PDF:", error);
+            alert("Hubo un error al generar el PDF. Revisa la consola.");
+          }
+        });
+      });
+
+      // Formatear fechas para mostrar en el PDF
+      const formattedDate = new Date(date).toLocaleDateString("es-ES");
+      const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
+
+      // Auto-llenar fecha de término: +30 días
+      document.getElementById("date").addEventListener("change", function () {
+        const startDate = new Date(this.value);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 30); // 30 días después
+
+        const yyyy = endDate.getFullYear();
+        const mm = String(endDate.getMonth() + 1).padStart(2, "0");
+        const dd = String(endDate.getDate()).padStart(2, "0");
+
+        document.getElementById("endDate").value = `${yyyy}-${mm}-${dd}`;
+      });
+
+      // ✅ Generar PDF
+      const doc = new window.jspdf.jsPDF();
+
+      doc.setFontSize(18);
+      doc.text("Datos del Empleado", 105, 20, { align: "center" });
+
+      doc.setFontSize(12);
+      doc.text("Información Laboral y Personal", 20, 30);
+
+      const items = [
+        `Nombre: ${name}`,
+        `RUT: ${rut}`,
+        `Fecha de inicio: ${formattedDate}`,
+        `Fecha de término: ${formattedEndDate}`,
+        `Domicilio: ${address}`,
+        `Estado Civil: ${civilStatus}`,
+        `Nacionalidad: ${nationality}`,
+        `Funciones: ${functions}`,
+        `AFP: ${afp}`,
+        `Salud: ${health}`,
+        `Lugar de servicio: ${servicePlace}`,
+      ];
+
+      let y = 40;
+      doc.setFontSize(11);
+      items.forEach((item) => {
+        // Si el texto es muy largo, haz salto de línea
+        const lines = doc.splitTextToSize(item, 170); // Ajusta ancho máximo
+        lines.forEach((line) => {
+          if (y < 280) {
+            // Evitar que se salga de la página
+            doc.text(line, 20, y);
+            y += 10;
+          } else {
+            doc.addPage();
+            y = 20;
+            doc.text(line, 20, y);
+            y += 10;
+          }
+        });
+      });
     </script>
   </body>
 </html>
