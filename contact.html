@@ -13,7 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- CSS Libraries -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -44,7 +47,6 @@
               <div class="logo">
                 <a href="index.html">
                   <h1>Pelon Tin SA</h1>
-                  <!-- <img src="img/logo.jpg" alt="Logo"> -->
                 </a>
               </div>
             </div>
@@ -57,7 +59,7 @@
                     </div>
                     <div class="top-bar-text">
                       <h3>Horario de atención</h3>
-                      <p>Lun - Vie, 8:00 - 9:00</p>
+                      <p>Lun - Vie, 8:00 - 17:00</p>
                     </div>
                   </div>
                 </div>
@@ -68,7 +70,7 @@
                     </div>
                     <div class="top-bar-text">
                       <h3>Llámenos</h3>
-                      <p>+012 345 6789</p>
+                      <p>+56 9 1234 5678</p>
                     </div>
                   </div>
                 </div>
@@ -79,7 +81,7 @@
                     </div>
                     <div class="top-bar-text">
                       <h3>Nuestro email</h3>
-                      <p>info@example.com</p>
+                      <p>contacto@pelontin.cl</p>
                     </div>
                   </div>
                 </div>
@@ -113,7 +115,7 @@
                 <a href="about.html" class="nav-item nav-link">Nosotros</a>
                 <a href="service.html" class="nav-item nav-link">Servicios</a>
                 <a href="team.html" class="nav-item nav-link">El Equipo</a>
-                <a href="portfolio.html" class="nav-item nav-link">Projectos</a>
+                <a href="portfolio.html" class="nav-item nav-link">Proyectos</a>
                 <div class="nav-item dropdown">
                   <a
                     href="#"
@@ -132,9 +134,6 @@
                   >Contacto</a
                 >
               </div>
-              <!-- <div class="ml-auto">
-                                            <a class="btn" href="#">Get A Quote</a>
-                                        </div> -->
             </div>
           </nav>
         </div>
@@ -146,11 +145,11 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h2>Contact Us</h2>
+              <h2>Generar Contrato</h2>
             </div>
             <div class="col-12">
-              <a href="">Home</a>
-              <a href="">Contact Us</a>
+              <a href="index.html">Inicio</a>
+              <a href="contact.html">Contrato</a>
             </div>
           </div>
         </div>
@@ -161,8 +160,8 @@
       <div class="contact wow fadeInUp">
         <div class="container">
           <div class="section-header text-center">
-            <p>Get In Touch</p>
-            <h2>For Any Query</h2>
+            <p>Complete los datos del empleado</p>
+            <h2>Generar Contrato Laboral</h2>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -170,31 +169,31 @@
                 <div class="contact-item">
                   <i class="flaticon-address"></i>
                   <div class="contact-text">
-                    <h2>Location</h2>
-                    <p>123 Street, New York, USA</p>
+                    <h2>Oficina</h2>
+                    <p>Av. Siempre Viva 123, Santiago, Chile</p>
                   </div>
                 </div>
                 <div class="contact-item">
                   <i class="flaticon-call"></i>
                   <div class="contact-text">
-                    <h2>Phone</h2>
-                    <p>+012 345 67890</p>
+                    <h2>Teléfono</h2>
+                    <p>+56 9 1234 5678</p>
                   </div>
                 </div>
                 <div class="contact-item">
                   <i class="flaticon-send-mail"></i>
                   <div class="contact-text">
                     <h2>Email</h2>
-                    <p>info@example.com</p>
+                    <p>contacto@pelontin.cl</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="contact-form">
-                <div id="success"></div>
                 <form id="clientForm" novalidate>
                   <div class="control-group">
+                    <label for="name">Nombre Completo</label>
                     <input
                       type="text"
                       class="form-control"
@@ -206,6 +205,7 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
+                    <label for="rut">RUT</label>
                     <input
                       type="text"
                       class="form-control"
@@ -217,6 +217,7 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
+                    <label for="date">Fecha de Inicio</label>
                     <input
                       type="date"
                       class="form-control"
@@ -227,6 +228,7 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
+                    <label for="endDate">Fecha de Término</label>
                     <input
                       type="date"
                       class="form-control"
@@ -236,8 +238,8 @@
                     />
                     <p class="help-block text-danger"></p>
                   </div>
-
                   <div class="control-group">
+                    <label for="servicePlace">Lugar de Servicio</label>
                     <select
                       class="form-control"
                       id="servicePlace"
@@ -263,6 +265,7 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
+                    <label for="address">Domicilio</label>
                     <input
                       type="text"
                       class="form-control"
@@ -273,18 +276,30 @@
                     />
                     <p class="help-block text-danger"></p>
                   </div>
+
                   <div class="control-group">
-                    <input
-                      type="text"
+                    <label for="civilStatus">Estado Civil</label>
+                    <select
                       class="form-control"
                       id="civilStatus"
-                      placeholder="Estado Civil"
                       required
-                      data-validation-required-message="Ingrese su estado civil"
-                    />
+                      data-validation-required-message="Seleccione su estado civil"
+                    >
+                      <option value="" disabled selected>
+                        Seleccione estado civil
+                      </option>
+                      <option value="Soltero">Soltero</option>
+                      <option value="Soltera">Soltera</option>
+                      <option value="Casado">Casado</option>
+                      <option value="Casada">Casada</option>
+                      <option value="Viudo">Viudo</option>
+                      <option value="Viuda">Viuda</option>
+                    </select>
                     <p class="help-block text-danger"></p>
                   </div>
+
                   <div class="control-group">
+                    <label for="nationality">Nacionalidad</label>
                     <input
                       type="text"
                       class="form-control"
@@ -295,7 +310,9 @@
                     />
                     <p class="help-block text-danger"></p>
                   </div>
+
                   <div class="control-group">
+                    <label for="functions">Funciones</label>
                     <input
                       type="text"
                       class="form-control"
@@ -306,7 +323,9 @@
                     />
                     <p class="help-block text-danger"></p>
                   </div>
+
                   <div class="control-group">
+                    <label for="afp">AFP</label>
                     <select
                       class="form-control"
                       id="afp"
@@ -322,6 +341,7 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="control-group">
+                    <label for="health">Sistema de Salud</label>
                     <select
                       class="form-control"
                       id="health"
@@ -337,8 +357,12 @@
                     <p class="help-block text-danger"></p>
                   </div>
                   <div>
-                    <button class="btn" type="button" id="generatePdfButton">
-                      Generar PDF
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                      id="generatePdfButton"
+                    >
+                      📄 Generar Contrato PDF
                     </button>
                   </div>
                 </form>
@@ -355,72 +379,27 @@
           <div class="row">
             <div class="col-md-6 col-lg-3">
               <div class="footer-contact">
-                <h2>Office Contact</h2>
+                <h2>Contacto</h2>
                 <p>
-                  <i class="fa fa-map-marker-alt"></i>123 Street, New York, USA
+                  <i class="fa fa-map-marker-alt"></i> Av. Siempre Viva 123,
+                  Santiago, Chile
                 </p>
-                <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope"></i>info@example.com</p>
-                <div class="footer-social">
-                  <a href=""><i class="fab fa-twitter"></i></a>
-                  <a href=""><i class="fab fa-facebook-f"></i></a>
-                  <a href=""><i class="fab fa-youtube"></i></a>
-                  <a href=""><i class="fab fa-instagram"></i></a>
-                  <a href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                <p><i class="fa fa-phone-alt"></i> +56 9 1234 5678</p>
+                <p><i class="fa fa-envelope"></i> contacto@pelontin.cl</p>
               </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="footer-link">
-                <h2>Services Areas</h2>
-                <a href="">Building Construction</a>
-                <a href="">House Renovation</a>
-                <a href="">Architecture Design</a>
-                <a href="">Interior Design</a>
-                <a href="">Painting</a>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="footer-link">
-                <h2>Useful Pages</h2>
-                <a href="">About Us</a>
-                <a href="">Contact Us</a>
-                <a href="">Our Team</a>
-                <a href="">Projects</a>
-                <a href="">Testimonial</a>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <div class="newsletter">
-                <h2>Newsletter</h2>
-                <p>
-                  Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi.
-                  Curabitur facilisis ornare velit non vulpu
-                </p>
-                <div class="form">
-                  <input class="form-control" placeholder="Email here" />
-                  <button class="btn">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container footer-menu">
-          <div class="f-menu">
-            <a href="">Terms of use</a>
-            <a href="">Privacy policy</a>
-            <a href="">Cookies</a>
-            <a href="">Help</a>
-            <a href="">FQAs</a>
           </div>
         </div>
         <div class="container copyright">
           <div class="row">
             <div class="col-md-6">
-              <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+              <p>
+                &copy; <a href="#">Pelon Tin SA</a>, 2025. Todos los derechos
+                reservados.
+              </p>
             </div>
             <div class="col-md-6">
-              <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+              <p>Hecho con ❤️ para RRHH</p>
             </div>
           </div>
         </div>
@@ -436,229 +415,358 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/slick/slick.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script>
-      // Esperar a que el DOM esté listo
+      // Formatear RUT
+      function formatearRUT(rut) {
+        rut = rut.replace(/\D/g, "");
+        if (rut.length < 2) return rut;
+        const cuerpo = rut.slice(0, -1);
+        const dv = rut.slice(-1);
+        const cuerpoConPuntos = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `${cuerpoConPuntos}-${dv}`;
+      }
+
+      // Validar RUT chileno
+      function validarRUT(rut) {
+        rut = rut.toString().replace(/\./g, "").replace(/-/g, "").trim();
+        if (rut.length < 2) return false;
+        const cuerpo = rut.slice(0, -1);
+        const dv = rut.slice(-1).toUpperCase();
+        if (!/^\d+$/.test(cuerpo)) return false;
+
+        let suma = 0;
+        let multiplicador = 2;
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+          suma += parseInt(cuerpo[i]) * multiplicador;
+          multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+        }
+
+        const resto = suma % 11;
+        let dvEsperado;
+        if (resto === 0) dvEsperado = "0";
+        else if (resto === 1) dvEsperado = "K";
+        else dvEsperado = (11 - resto).toString();
+
+        return dv === dvEsperado;
+      }
+
       document.addEventListener("DOMContentLoaded", function () {
-        console.log("Página cargada y lista");
-
-        // Botón que dispara la acción
+        const nameInput = document.getElementById("name");
+        const functionsInput = document.getElementById("functions");
+        const addressInput = document.getElementById("address");
+        const rutInput = document.getElementById("rut");
         const button = document.getElementById("generatePdfButton");
-        if (!button) {
-          console.error(
-            "❌ No se encontró el botón con id 'generatePdfButton'"
-          );
-          return;
-        }
 
-        // Calcular fecha de mañana
-        function getTomorrowISO() {
-          const today = new Date();
-          const tomorrow = new Date(today);
-          tomorrow.setDate(today.getDate() + 1);
-          return tomorrow.toISOString().split("T")[0];
-        }
+        // ✅ Capitalizar nombre al salir del campo
+        nameInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
 
-        // Establecer fecha por defecto al cargar
-        window.addEventListener("load", function () {
-          const dateInput = document.getElementById("date");
-          if (dateInput) {
-            dateInput.value = getTomorrowISO();
+        nameInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        functionsInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        addressInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        // ✅ Formatear RUT en tiempo real
+        rutInput.addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          if (value.length > 1) {
+            e.target.value = formatearRUT(value);
+          } else {
+            e.target.value = value;
           }
         });
 
-        // Evento click en el botón
-        button.addEventListener("click", function (e) {
-          e.preventDefault();
-          console.log("Botón 'Generar PDF' clickeado");
+        rutInput.addEventListener("paste", function () {
+          setTimeout(() => {
+            let value = rutInput.value.replace(/\D/g, "");
+            if (value.length > 1) rutInput.value = formatearRUT(value);
+          }, 10);
+        });
 
-          // Obtener valores
-          const name = document.getElementById("name").value.trim();
-          const rut = document.getElementById("rut").value.trim();
-          const address = document.getElementById("address").value.trim();
+        // Fecha de inicio: mañana por defecto
+        const dateInput = document.getElementById("date");
+        if (dateInput) {
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dateInput.value = tomorrow.toISOString().split("T")[0];
+        }
+
+        // Fecha de término: +30 días
+        document.getElementById("date").addEventListener("change", function () {
+          const startDate = new Date(this.value);
+          const endDate = new Date(startDate);
+          endDate.setDate(startDate.getDate() + 30);
+          const yyyy = endDate.getFullYear();
+          const mm = String(endDate.getMonth() + 1).padStart(2, "0");
+          const dd = String(endDate.getDate()).padStart(2, "0");
+          document.getElementById("endDate").value = `${yyyy}-${mm}-${dd}`;
+        });
+
+        // ✅ Generar PDF
+        button.addEventListener("click", function () {
+          const name = nameInput.value.trim();
+          const rut = rutInput.value.trim();
+          const address = addressInput.value.trim();
           const civilStatus = document
             .getElementById("civilStatus")
             .value.trim();
           const nationality = document
             .getElementById("nationality")
             .value.trim();
-          const functions = document.getElementById("functions").value.trim();
+          const functions = functionsInput.value.trim();
           const afp = document.getElementById("afp").value;
           const health = document.getElementById("health").value;
           const date = document.getElementById("date").value;
-          const endDate = document.getElementById("endDate").value; // Fecha de término
-          const servicePlace = document.getElementById("servicePlace").value; // Lugar de servicio
+          const endDate = document.getElementById("endDate").value;
+          const servicePlace = document.getElementById("servicePlace").value;
 
           // Limpiar errores
-          const errors = document.querySelectorAll(".help-block.text-danger");
-          errors.forEach((el) => (el.textContent = ""));
+          document
+            .querySelectorAll(".help-block.text-danger")
+            .forEach((el) => (el.textContent = ""));
 
           let hasError = false;
 
           if (!name) {
-            document.querySelector("#name ~ .help-block").textContent =
-              "El nombre es obligatorio.";
+            showError("name", "El nombre es obligatorio.");
             hasError = true;
           }
           if (!rut) {
-            document.querySelector("#rut ~ .help-block").textContent =
-              "El RUT es obligatorio.";
+            showError("rut", "El RUT es obligatorio.");
+            hasError = true;
+          } else if (!validarRUT(rut)) {
+            showError("rut", "El RUT ingresado no es válido.");
             hasError = true;
           }
           if (!address) {
-            document.querySelector("#address ~ .help-block").textContent =
-              "El domicilio es obligatorio.";
+            showError("address", "El domicilio es obligatorio.");
             hasError = true;
           }
           if (!civilStatus) {
-            document.querySelector("#civilStatus ~ .help-block").textContent =
-              "El estado civil es obligatorio.";
+            showError("civilStatus", "El estado civil es obligatorio.");
             hasError = true;
           }
           if (!nationality) {
-            document.querySelector("#nationality ~ .help-block").textContent =
-              "La nacionalidad es obligatoria.";
+            showError("nationality", "La nacionalidad es obligatoria.");
             hasError = true;
           }
           if (!functions) {
-            document.querySelector("#functions ~ .help-block").textContent =
-              "Las funciones son obligatorias.";
+            showError("functions", "Las funciones son obligatorias.");
             hasError = true;
           }
           if (!afp) {
-            document.querySelector("#afp ~ .help-block").textContent =
-              "Debe seleccionar una AFP.";
+            showError("afp", "Debe seleccionar una AFP.");
             hasError = true;
           }
           if (!health) {
-            document.querySelector("#health ~ .help-block").textContent =
-              "Debe seleccionar un sistema de salud.";
+            showError("health", "Debe seleccionar un sistema de salud.");
             hasError = true;
           }
           if (!date) {
-            document.querySelector("#date ~ .help-block").textContent =
-              "La fecha es obligatoria.";
+            showError("date", "La fecha de inicio es obligatoria.");
             hasError = true;
           }
 
-          // Mostrar alert si hay errores
           if (hasError) {
             alert("Por favor, complete todos los campos obligatorios.");
-            console.warn("Hay campos vacíos");
             return;
           }
 
-          // Formatear fecha para el PDF
-          const formattedDate = new Date(date).toLocaleDateString("es-ES");
-
+          // ✅ Generar PDF
+          // ✅ Generar PDF con formato de contrato legal
           try {
-            // ✅ Generar PDF
-            const doc = new window.jspdf.jsPDF();
-
-            doc.setFontSize(18);
-            doc.text("Datos del Empleado", 105, 20, { align: "center" });
-
-            doc.setFontSize(12);
-            doc.text("Información Laboral y Personal", 20, 30);
-
-            const items = [
-              `Nombre: ${name}`,
-              `RUT: ${rut}`,
-              `Fecha: ${formattedDate}`,
-              `Domicilio: ${address}`,
-              `Estado Civil: ${civilStatus}`,
-              `Nacionalidad: ${nationality}`,
-              `Funciones: ${functions}`,
-              `AFP: ${afp}`,
-              `Salud: ${health}`,
-            ];
-
-            let y = 40;
-            doc.setFontSize(11);
-            items.forEach((item) => {
-              doc.text(item, 20, y);
-              y += 10;
+            // Crear instancia de jsPDF
+            const doc = new window.jspdf.jsPDF({
+              format: "a4",
+              unit: "mm",
             });
 
-            doc.save(`contrato_${name.split(" ")[0]}.pdf`);
-            console.log("✅ PDF generado y descargado");
+            // === Cargar Montserrat ===
+            // Nota: jsPDF no soporta Google Fonts directamente, pero podemos usar una fuente embebida
+            // Usaremos un workaround: agregar la fuente desde un CDN o base64
+            // Aquí usamos una forma simple con addFont (requiere el archivo .ttf convertido a base64)
+
+            // ⚠️ Alternativa recomendada: usar `helvetica` (similar a Montserrat) si no quieres complicarte
+            // Pero si insistes en Montserrat, aquí va el método con addFont:
+
+            // --- Agregar fuente Montserrat ---
+            const montserratFont = `...`; // Base64 de Montserrat-Regular.ttf (ver abajo)
+
+            // Si no quieres usar base64 manual, usa esta alternativa más simple:
+            doc.setFont("helvetica"); // Muy similar visualmente a Montserrat
+            doc.setFontSize(11);
+
+            // === Configuración inicial ===
+            const leftMargin = 20;
+            const lineHeight = 8;
+            let y = 30;
+
+            // Título centrado (puedes mantener Helvetica o cambiar luego)
+            doc.setFontSize(16);
+            doc.text("CONTRATO DE TRABAJO", 105, 20, { align: "center" });
+
+            // Volver a 11pt para el cuerpo
+            doc.setFontSize(11);
+
+            // Variables del formulario
+            const nombre = document.getElementById("name").value.trim();
+            const rut = document.getElementById("rut").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const civilStatus = document
+              .getElementById("civilStatus")
+              .value.trim();
+            const nationality = document
+              .getElementById("nationality")
+              .value.trim();
+            const functions = document.getElementById("functions").value.trim();
+            const afp = document.getElementById("afp").value;
+            const health = document.getElementById("health").value;
+            const fechaInicio = new Date(date).toLocaleDateString("es-ES", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+            const fechaTermino = new Date(endDate).toLocaleDateString("es-ES", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+            const lugarServicio = document.getElementById("servicePlace").value;
+
+            // Texto del contrato
+            const contratoTexto = `
+En Santiago, ${fechaInicio}, entre Agustín Johann Bravo Jara, RUT 20.034.955-5, en representación de CONSTRUCCIONES ByJ SPA, RUT 77.527.616-9, ambos domiciliados en Ismael Valdés Vergara N° 67, Of. 902, comuna de Santiago, quien en adelante se denominará EL EMPLEADOR, y ${nombre}, de nacionalidad ${nationality}, estado civil ${civilStatus}, RUT ${rut}, domiciliado en ${address}, quien en adelante se denominará EL TRABAJADOR, se ha convenido el siguiente contrato de trabajo:
+
+PRIMERO: EL TRABAJADOR se compromete a ejecutar la labor de ${functions}, la dependencia jerárquica y funcional del cargo es del Supervisor, perteneciente a Gerencia General.
+
+SEGUNDO: Las partes dejan constancia expresa que son obligaciones principales, con el carácter de esenciales, de EL TRABAJADOR, entre otras, las siguientes:
+a) Ejecutar la labor para la cual fue contratado o la que le encomiende EL EMPLEADOR, conforme a las cláusulas de este Contrato y lo dispuesto en el artículo 12 del Código del Trabajo.
+b) Cumplir y observar fielmente, en el desempeño de sus funciones, todas las instrucciones, órdenes y normas de atención que le sean impartidas por el personal de la Empresa revestido de autoridad suficiente. Corresponde exclusivamente a EL EMPLEADOR determinar que personal es el que tiene autoridad suficiente.
+c) Cumplir estrictamente las disposiciones, circulares, memorándums y normas de los reglamentos internos y, en forma muy especial, aquellos referentes a higiene y seguridad industrial. Se considerarán parte integrante de este contrato todas las actuales disposiciones, circulares, memorándums y normas referidas precedentes y las que se dicten en el futuro.
+d) Guardar la más absoluta reserva respecto de todas las operaciones comerciales, técnicas, procedimientos y prácticas de la Empresa en que intervenga o de que tenga conocimiento por sus labores, cargo o función.
+e) Cuidar, proteger y mantener en perfecto estado de conservación, presentación y aseo el sitio de su trabajo, la ropa de trabajo o uniformes, los implementos, bienes y útiles que la Empresa le proporcione para su trabajo.
+f) Abstenerse de ingresar a las dependencias de la Empresa efectos personales, equipos y cualquier otro bien o especie.
+g) Proporcionar una esmerada y cortés atención y servicio a los clientes de su Empleador.
+h) Mantener durante todo el tiempo que permanezca en el establecimiento, sea o no durante su jornada de trabajo, un adecuado comportamiento, orden y disciplina frente al público, clientes, compañeros de trabajo y Jefes superiores.
+i) Si el trabajador estuviese impedido por enfermedad para concurrir a su trabajo, deberá presentar al empleador, por sí o por intermedio de una tercera persona, el formulario de licencia, con la certificación médica, extendida en la forma prevista en la legislación vigente, dentro del plazo de dos días hábiles contados desde la fecha de inicio de la licencia médica. En todo caso, EL EMPLEADOR podrá constatar a través del personal médico o paramédico que designe la eventual enfermedad del trabajador.
+Se deja constancia de que el Empleador considerará como incumplimiento grave de las obligaciones que impone el contrato de trabajo, el incumplimiento de cualquiera de las obligaciones contempladas tanto en el Contrato de Trabajo como en el Reglamento Interno de la Empresa. Dicho incumplimiento se considerará como causa justificada para poner término al contrato de trabajo, de conformidad con lo dispuesto en el artículo 160, N°7 del Código del Trabajo.
+
+TERCERO: Queda prohibido a EL TRABAJADOR, entre otros, lo siguiente:
+a) Trabajar o realizar actividades durante su jornada en asuntos que no corresponden al giro de EL EMPLEADOR y tener parte directa o indirecta en actividades que requieran su atención personal y que no tengan relación con su trabajo.
+b) Ejecutar cualquier clase de negociaciones similares, conexas, parecidas o equivalentes que digan relación directa o indirectamente con el giro de EL EMPLEADOR. No obstante, en casos calificados, EL EMPLEADOR podrá otorgar autorización por escrito para ejecutar ciertas actividades de las recién señaladas.
+
+CUARTO: De la duración y distribución de la jornada de trabajo, las partes dejan constancia que, atendida la naturaleza de los servicios y según lo previsto en el artículo 22, inciso segundo del Código del Trabajo, EL EMPLEADOR se reserva el derecho de poder citar y contar con las funciones del trabajador en horarios, lugares específicos y especiales que correspondan, debido al origen y giro del empleador. Se establece una hora de colación, en los horarios establecidos por la empresa, que son de cargo del trabajador.
+
+QUINTO: Remuneración. El sueldo base de EL TRABAJADOR será de $539.636, más gratificación. Se deja constancia de que son de cargo del trabajador las cotizaciones previsionales que graven a las remuneraciones que devengue o perciba por cualquier causa o concepto: AFP ${afp}, Salud ${health}.
+
+SEXTO: Cualquier prestación ocasional o periódica que EL EMPLEADOR conceda a EL TRABAJADOR, fuera de las que corresponden y que fueron mencionadas en la cláusula quinta de este contrato o con las disposiciones legales, se entenderá conferida a título de mera liberalidad y no dará derecho futuro alguno a EL TRABAJADOR. EL EMPLEADOR podrá suspenderla o modificarla a su entero arbitrio.
+
+SÉPTIMO: El presente contrato tiene validez hasta el ${fechaTermino}, en ${lugarServicio}.
+
+OCTAVO: Se deja constancia de que EL TRABAJADOR ingresó a la Empresa el ${fechaInicio}. EL TRABAJADOR declara expresamente haber recibido un ejemplar de este contrato de trabajo y también un ejemplar del Reglamento Interno.`;
+
+            // Imprimir texto línea por línea
+            const lines = doc.splitTextToSize(contratoTexto, 170);
+            lines.forEach((line) => {
+              if (y > 280) {
+                doc.addPage();
+                y = 20;
+              }
+              if (line.trim() === "") {
+                y += lineHeight / 2;
+              } else {
+                doc.text(line, leftMargin, y);
+                y += lineHeight;
+              }
+            });
+
+            // Espacio antes de firmas
+            y += 20;
+            if (y > 280) {
+              doc.addPage();
+              y = 20;
+            }
+
+            // === Firmas en dos columnas centradas ===
+            const pageWidth = 210;
+            const margin = 20;
+            const colWidth = (pageWidth - margin * 2) / 2;
+
+            const xLeft = margin + colWidth / 2;
+            const xRight = margin + colWidth + colWidth / 2;
+
+            doc.text("________________________", xLeft, y, { align: "center" });
+            doc.text("EL TRABAJADOR", xLeft, y + 5, { align: "center" });
+            doc.text(nombre, xLeft, y + 10, { align: "center" });
+            doc.text(`RUT ${rut}`, xLeft, y + 15, { align: "center" });
+
+            doc.text("________________________", xRight, y, {
+              align: "center",
+            });
+            doc.text("EL EMPLEADOR", xRight, y + 5, { align: "center" });
+            doc.text("CONSTRUCCIONES BYJ SPA", xRight, y + 10, {
+              align: "center",
+            });
+            doc.text("RUT 77.527.616-9", xRight, y + 15, { align: "center" });
+
+            // Descargar PDF
+            doc.save(`contrato_${nombre.split(" ")[0]}.pdf`);
+            console.log(
+              "✅ PDF generado con Montserrat (simulado con helvetica)"
+            );
           } catch (error) {
-            console.error("❌ Error al generar el PDF:", error);
-            alert("Hubo un error al generar el PDF. Revisa la consola.");
+            console.error("❌ Error al generar PDF:", error);
+            alert("Error al generar el contrato. Revisa la consola.");
           }
         });
-      });
 
-      // Formatear fechas para mostrar en el PDF
-      const formattedDate = new Date(date).toLocaleDateString("es-ES");
-      const formattedEndDate = new Date(endDate).toLocaleDateString("es-ES");
-
-      // Auto-llenar fecha de término: +30 días
-      document.getElementById("date").addEventListener("change", function () {
-        const startDate = new Date(this.value);
-        const endDate = new Date(startDate);
-        endDate.setDate(startDate.getDate() + 30); // 30 días después
-
-        const yyyy = endDate.getFullYear();
-        const mm = String(endDate.getMonth() + 1).padStart(2, "0");
-        const dd = String(endDate.getDate()).padStart(2, "0");
-
-        document.getElementById("endDate").value = `${yyyy}-${mm}-${dd}`;
-      });
-
-      // ✅ Generar PDF
-      const doc = new window.jspdf.jsPDF();
-
-      doc.setFontSize(18);
-      doc.text("Datos del Empleado", 105, 20, { align: "center" });
-
-      doc.setFontSize(12);
-      doc.text("Información Laboral y Personal", 20, 30);
-
-      const items = [
-        `Nombre: ${name}`,
-        `RUT: ${rut}`,
-        `Fecha de inicio: ${formattedDate}`,
-        `Fecha de término: ${formattedEndDate}`,
-        `Domicilio: ${address}`,
-        `Estado Civil: ${civilStatus}`,
-        `Nacionalidad: ${nationality}`,
-        `Funciones: ${functions}`,
-        `AFP: ${afp}`,
-        `Salud: ${health}`,
-        `Lugar de servicio: ${servicePlace}`,
-      ];
-
-      let y = 40;
-      doc.setFontSize(11);
-      items.forEach((item) => {
-        // Si el texto es muy largo, haz salto de línea
-        const lines = doc.splitTextToSize(item, 170); // Ajusta ancho máximo
-        lines.forEach((line) => {
-          if (y < 280) {
-            // Evitar que se salga de la página
-            doc.text(line, 20, y);
-            y += 10;
-          } else {
-            doc.addPage();
-            y = 20;
-            doc.text(line, 20, y);
-            y += 10;
-          }
-        });
+        function showError(fieldId, message) {
+          document.querySelector(`#${fieldId} ~ .help-block`).textContent =
+            message;
+        }
       });
     </script>
   </body>
