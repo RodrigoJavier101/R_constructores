@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-
     <title>Constructores</title>
     <link rel="icon" type="image/svg+xml" href="./img/quote.png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -14,7 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- CSS Libraries -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -179,6 +181,354 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+      // Formatear RUT
+      function formatearRUT(rut) {
+        rut = rut.replace(/\D/g, "");
+        if (rut.length < 2) return rut;
+        const cuerpo = rut.slice(0, -1);
+        const dv = rut.slice(-1);
+        const cuerpoConPuntos = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `${cuerpoConPuntos}-${dv}`;
+      }
+
+      // Validar RUT chileno
+      function validarRUT(rut) {
+        rut = rut.toString().replace(/\./g, "").replace(/-/g, "").trim();
+        if (rut.length < 2) return false;
+        const cuerpo = rut.slice(0, -1);
+        const dv = rut.slice(-1).toUpperCase();
+        if (!/^\d+$/.test(cuerpo)) return false;
+
+        let suma = 0;
+        let multiplicador = 2;
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+          suma += parseInt(cuerpo[i]) * multiplicador;
+          multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+        }
+
+        const resto = suma % 11;
+        let dvEsperado;
+        if (resto === 0) dvEsperado = "0";
+        else if (resto === 1) dvEsperado = "K";
+        else dvEsperado = (11 - resto).toString();
+
+        return dv === dvEsperado;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const nameInput = document.getElementById("name");
+        const functionsInput = document.getElementById("functions");
+        const addressInput = document.getElementById("address");
+        const rutInput = document.getElementById("rut");
+        const button = document.getElementById("generatePdfButton");
+
+        // ✅ Capitalizar nombre al salir del campo
+        nameInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        nameInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        functionsInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        addressInput.addEventListener("blur", function (e) {
+          let value = e.target.value.trim().toLowerCase();
+          if (!value) return;
+          const capitalized = value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          e.target.value = capitalized;
+        });
+
+        // ✅ Formatear RUT en tiempo real
+        rutInput.addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          if (value.length > 1) {
+            e.target.value = formatearRUT(value);
+          } else {
+            e.target.value = value;
+          }
+        });
+
+        rutInput.addEventListener("paste", function () {
+          setTimeout(() => {
+            let value = rutInput.value.replace(/\D/g, "");
+            if (value.length > 1) rutInput.value = formatearRUT(value);
+          }, 10);
+        });
+
+        // Fecha de inicio: mañana por defecto
+        const dateInput = document.getElementById("date");
+        if (dateInput) {
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dateInput.value = tomorrow.toISOString().split("T")[0];
+        }
+
+        // Fecha de término: +30 días
+        document.getElementById("date").addEventListener("change", function () {
+          const startDate = new Date(this.value);
+          const endDate = new Date(startDate);
+          endDate.setDate(startDate.getDate() + 30);
+          const yyyy = endDate.getFullYear();
+          const mm = String(endDate.getMonth() + 1).padStart(2, "0");
+          const dd = String(endDate.getDate()).padStart(2, "0");
+          document.getElementById("endDate").value = `${yyyy}-${mm}-${dd}`;
+        });
+
+        // ✅ Generar PDF
+        button.addEventListener("click", function () {
+          const name = nameInput.value.trim();
+          const rut = rutInput.value.trim();
+          const address = addressInput.value.trim();
+          const civilStatus = document
+            .getElementById("civilStatus")
+            .value.trim();
+          const nationality = document
+            .getElementById("nationality")
+            .value.trim();
+          const functions = functionsInput.value.trim();
+          const afp = document.getElementById("afp").value;
+          const health = document.getElementById("health").value;
+          const date = document.getElementById("date").value;
+          const endDate = document.getElementById("endDate").value;
+          const servicePlace = document.getElementById("servicePlace").value;
+
+          // Limpiar errores
+          document
+            .querySelectorAll(".help-block.text-danger")
+            .forEach((el) => (el.textContent = ""));
+
+          let hasError = false;
+
+          if (!name) {
+            showError("name", "El nombre es obligatorio.");
+            hasError = true;
+          }
+          if (!rut) {
+            showError("rut", "El RUT es obligatorio.");
+            hasError = true;
+          } else if (!validarRUT(rut)) {
+            showError("rut", "El RUT ingresado no es válido.");
+            hasError = true;
+          }
+          if (!address) {
+            showError("address", "El domicilio es obligatorio.");
+            hasError = true;
+          }
+          if (!civilStatus) {
+            showError("civilStatus", "El estado civil es obligatorio.");
+            hasError = true;
+          }
+          if (!nationality) {
+            showError("nationality", "La nacionalidad es obligatoria.");
+            hasError = true;
+          }
+          if (!functions) {
+            showError("functions", "Las funciones son obligatorias.");
+            hasError = true;
+          }
+          if (!afp) {
+            showError("afp", "Debe seleccionar una AFP.");
+            hasError = true;
+          }
+          if (!health) {
+            showError("health", "Debe seleccionar un sistema de salud.");
+            hasError = true;
+          }
+          if (!date) {
+            showError("date", "La fecha de inicio es obligatoria.");
+            hasError = true;
+          }
+
+          if (hasError) {
+            alert("Por favor, complete todos los campos obligatorios.");
+            return;
+          }
+
+          // ✅ Generar PDF
+          // ✅ Generar PDF con formato de contrato legal
+          try {
+            // Crear instancia de jsPDF
+            const doc = new window.jspdf.jsPDF({
+              format: "a4",
+              unit: "mm",
+            });
+
+            // === Cargar Montserrat ===
+            // Nota: jsPDF no soporta Google Fonts directamente, pero podemos usar una fuente embebida
+            // Usaremos un workaround: agregar la fuente desde un CDN o base64
+            // Aquí usamos una forma simple con addFont (requiere el archivo .ttf convertido a base64)
+
+            // ⚠️ Alternativa recomendada: usar `helvetica` (similar a Montserrat) si no quieres complicarte
+            // Pero si insistes en Montserrat, aquí va el método con addFont:
+
+            // --- Agregar fuente Montserrat ---
+            const montserratFont = `...`; // Base64 de Montserrat-Regular.ttf (ver abajo)
+
+            // Si no quieres usar base64 manual, usa esta alternativa más simple:
+            doc.setFont("helvetica"); // Muy similar visualmente a Montserrat
+            doc.setFontSize(11);
+
+            // === Configuración inicial ===
+            const leftMargin = 20;
+            const lineHeight = 8;
+            let y = 30;
+
+            // Título centrado (puedes mantener Helvetica o cambiar luego)
+            doc.setFontSize(16);
+            doc.text("CONTRATO DE TRABAJO", 105, 20, { align: "center" });
+
+            // Volver a 11pt para el cuerpo
+            doc.setFontSize(11);
+
+            // Variables del formulario
+            const nombre = document.getElementById("name").value.trim();
+            const rut = document.getElementById("rut").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const civilStatus = document
+              .getElementById("civilStatus")
+              .value.trim();
+            const nationality = document
+              .getElementById("nationality")
+              .value.trim();
+            const functions = document.getElementById("functions").value.trim();
+            const afp = document.getElementById("afp").value;
+            const health = document.getElementById("health").value;
+            const fechaInicio = new Date(date).toLocaleDateString("es-ES", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+            const fechaTermino = new Date(endDate).toLocaleDateString("es-ES", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+            const lugarServicio = document.getElementById("servicePlace").value;
+
+            // Texto del contrato
+            const contratoTexto = `
+En Santiago, ${fechaInicio}, entre Agustín Johann Bravo Jara, RUT 20.034.955-5, en representación de CONSTRUCCIONES ByJ SPA, RUT 77.527.616-9, ambos domiciliados en Ismael Valdés Vergara N° 67, Of. 902, comuna de Santiago, quien en adelante se denominará EL EMPLEADOR, y ${nombre}, de nacionalidad ${nationality}, estado civil ${civilStatus}, RUT ${rut}, domiciliado en ${address}, quien en adelante se denominará EL TRABAJADOR, se ha convenido el siguiente contrato de trabajo:
+
+PRIMERO: EL TRABAJADOR se compromete a ejecutar la labor de ${functions}, la dependencia jerárquica y funcional del cargo es del Supervisor, perteneciente a Gerencia General.
+
+SEGUNDO: Las partes dejan constancia expresa que son obligaciones principales, con el carácter de esenciales, de EL TRABAJADOR, entre otras, las siguientes:
+a) Ejecutar la labor para la cual fue contratado o la que le encomiende EL EMPLEADOR, conforme a las cláusulas de este Contrato y lo dispuesto en el artículo 12 del Código del Trabajo.
+b) Cumplir y observar fielmente, en el desempeño de sus funciones, todas las instrucciones, órdenes y normas de atención que le sean impartidas por el personal de la Empresa revestido de autoridad suficiente. Corresponde exclusivamente a EL EMPLEADOR determinar que personal es el que tiene autoridad suficiente.
+c) Cumplir estrictamente las disposiciones, circulares, memorándums y normas de los reglamentos internos y, en forma muy especial, aquellos referentes a higiene y seguridad industrial. Se considerarán parte integrante de este contrato todas las actuales disposiciones, circulares, memorándums y normas referidas precedentes y las que se dicten en el futuro.
+d) Guardar la más absoluta reserva respecto de todas las operaciones comerciales, técnicas, procedimientos y prácticas de la Empresa en que intervenga o de que tenga conocimiento por sus labores, cargo o función.
+e) Cuidar, proteger y mantener en perfecto estado de conservación, presentación y aseo el sitio de su trabajo, la ropa de trabajo o uniformes, los implementos, bienes y útiles que la Empresa le proporcione para su trabajo.
+f) Abstenerse de ingresar a las dependencias de la Empresa efectos personales, equipos y cualquier otro bien o especie.
+g) Proporcionar una esmerada y cortés atención y servicio a los clientes de su Empleador.
+h) Mantener durante todo el tiempo que permanezca en el establecimiento, sea o no durante su jornada de trabajo, un adecuado comportamiento, orden y disciplina frente al público, clientes, compañeros de trabajo y Jefes superiores.
+i) Si el trabajador estuviese impedido por enfermedad para concurrir a su trabajo, deberá presentar al empleador, por sí o por intermedio de una tercera persona, el formulario de licencia, con la certificación médica, extendida en la forma prevista en la legislación vigente, dentro del plazo de dos días hábiles contados desde la fecha de inicio de la licencia médica. En todo caso, EL EMPLEADOR podrá constatar a través del personal médico o paramédico que designe la eventual enfermedad del trabajador.
+Se deja constancia de que el Empleador considerará como incumplimiento grave de las obligaciones que impone el contrato de trabajo, el incumplimiento de cualquiera de las obligaciones contempladas tanto en el Contrato de Trabajo como en el Reglamento Interno de la Empresa. Dicho incumplimiento se considerará como causa justificada para poner término al contrato de trabajo, de conformidad con lo dispuesto en el artículo 160, N°7 del Código del Trabajo.
+
+TERCERO: Queda prohibido a EL TRABAJADOR, entre otros, lo siguiente:
+a) Trabajar o realizar actividades durante su jornada en asuntos que no corresponden al giro de EL EMPLEADOR y tener parte directa o indirecta en actividades que requieran su atención personal y que no tengan relación con su trabajo.
+b) Ejecutar cualquier clase de negociaciones similares, conexas, parecidas o equivalentes que digan relación directa o indirectamente con el giro de EL EMPLEADOR. No obstante, en casos calificados, EL EMPLEADOR podrá otorgar autorización por escrito para ejecutar ciertas actividades de las recién señaladas.
+
+CUARTO: De la duración y distribución de la jornada de trabajo, las partes dejan constancia que, atendida la naturaleza de los servicios y según lo previsto en el artículo 22, inciso segundo del Código del Trabajo, EL EMPLEADOR se reserva el derecho de poder citar y contar con las funciones del trabajador en horarios, lugares específicos y especiales que correspondan, debido al origen y giro del empleador. Se establece una hora de colación, en los horarios establecidos por la empresa, que son de cargo del trabajador.
+
+QUINTO: Remuneración. El sueldo base de EL TRABAJADOR será de $539.636, más gratificación. Se deja constancia de que son de cargo del trabajador las cotizaciones previsionales que graven a las remuneraciones que devengue o perciba por cualquier causa o concepto: AFP ${afp}, Salud ${health}.
+
+SEXTO: Cualquier prestación ocasional o periódica que EL EMPLEADOR conceda a EL TRABAJADOR, fuera de las que corresponden y que fueron mencionadas en la cláusula quinta de este contrato o con las disposiciones legales, se entenderá conferida a título de mera liberalidad y no dará derecho futuro alguno a EL TRABAJADOR. EL EMPLEADOR podrá suspenderla o modificarla a su entero arbitrio.
+
+SÉPTIMO: El presente contrato tiene validez hasta el ${fechaTermino}, en ${lugarServicio}.
+
+OCTAVO: Se deja constancia de que EL TRABAJADOR ingresó a la Empresa el ${fechaInicio}. EL TRABAJADOR declara expresamente haber recibido un ejemplar de este contrato de trabajo y también un ejemplar del Reglamento Interno.`;
+
+            // Imprimir texto línea por línea
+            const lines = doc.splitTextToSize(contratoTexto, 170);
+            lines.forEach((line) => {
+              if (y > 280) {
+                doc.addPage();
+                y = 20;
+              }
+              if (line.trim() === "") {
+                y += lineHeight / 2;
+              } else {
+                doc.text(line, leftMargin, y);
+                y += lineHeight;
+              }
+            });
+
+            // Espacio antes de firmas
+            y += 20;
+            if (y > 280) {
+              doc.addPage();
+              y = 20;
+            }
+
+            // === Firmas en dos columnas centradas ===
+            const pageWidth = 210;
+            const margin = 20;
+            const colWidth = (pageWidth - margin * 2) / 2;
+
+            const xLeft = margin + colWidth / 2;
+            const xRight = margin + colWidth + colWidth / 2;
+
+            doc.text("________________________", xLeft, y, { align: "center" });
+            doc.text("EL TRABAJADOR", xLeft, y + 5, { align: "center" });
+            doc.text(nombre, xLeft, y + 10, { align: "center" });
+            doc.text(`RUT ${rut}`, xLeft, y + 15, { align: "center" });
+
+            doc.text("________________________", xRight, y, {
+              align: "center",
+            });
+            doc.text("EL EMPLEADOR", xRight, y + 5, { align: "center" });
+            doc.text("CONSTRUCCIONES BYJ SPA", xRight, y + 10, {
+              align: "center",
+            });
+            doc.text("RUT 77.527.616-9", xRight, y + 15, { align: "center" });
+
+            // Descargar PDF
+            doc.save(`contrato_${nombre.split(" ")[0]}.pdf`);
+            console.log(
+              "✅ PDF generado con Montserrat (simulado con helvetica)"
+            );
+          } catch (error) {
+            console.error("❌ Error al generar PDF:", error);
+            alert("Error al generar el contrato. Revisa la consola.");
+          }
+        });
+
+        function showError(fieldId, message) {
+          document.querySelector(`#${fieldId} ~ .help-block`).textContent =
+            message;
+        }
+      });
+    </script>
+
     <script>
       // Mapeo de hash a archivos
       const pages = {
@@ -234,5 +584,7 @@
         if (activeLink) activeLink.classList.add("active");
       }
     </script>
+
+    
   </body>
 </html>

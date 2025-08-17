@@ -1,0 +1,223 @@
+<div class="wrapper">
+  
+  <!-- Contact Start -->
+  <div class="contact wow fadeInUp">
+    <div class="container">
+      <div class="section-header text-center">
+        <p>Complete los datos del empleado</p>
+        <h2>Generar Contrato Laboral</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="flaticon-address"></i>
+              <div class="contact-text">
+                <h2>Oficina</h2>
+                <p>Av. Siempre Viva 123, Santiago, Chile</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="flaticon-call"></i>
+              <div class="contact-text">
+                <h2>Teléfono</h2>
+                <p>+56 9 1234 5678</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="flaticon-send-mail"></i>
+              <div class="contact-text">
+                <h2>Email</h2>
+                <p>contacto@pelontin.cl</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-form">
+            <form id="clientForm" novalidate>
+              <div class="control-group">
+                <label for="name">Nombre Completo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Nombre completo"
+                  required
+                  data-validation-required-message="Ingrese su nombre"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="rut">RUT</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rut"
+                  placeholder="RUT (ej: 12.345.678-9)"
+                  required
+                  data-validation-required-message="Ingrese su RUT"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="date">Fecha de Inicio</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  required
+                  data-validation-required-message="Seleccione una fecha"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="endDate">Fecha de Término</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="endDate"
+                  required
+                  data-validation-required-message="Seleccione la fecha de término"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="servicePlace">Lugar de Servicio</label>
+                <select
+                  class="form-control"
+                  id="servicePlace"
+                  required
+                  data-validation-required-message="Seleccione el lugar de servicio"
+                >
+                  <option value="" disabled selected>
+                    Seleccione lugar de servicio
+                  </option>
+                  <option
+                    value="Parque Las Violetas Frente 1, dirección Rodoviario 8570, comuna de Cerro Navia"
+                  >
+                    Parque Las Violetas Frente 1, dirección Rodoviario 8570,
+                    comuna de Cerro Navia
+                  </option>
+                  <option
+                    value="Parque Las Violetas Frente 2, dirección Rodoviario 8570, comuna de Cerro Navia"
+                  >
+                    Parque Las Violetas Frente 2, dirección Rodoviario 8570,
+                    comuna de Cerro Navia
+                  </option>
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="address">Domicilio</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="Domicilio"
+                  required
+                  data-validation-required-message="Ingrese su domicilio"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+
+              <div class="control-group">
+                <label for="civilStatus">Estado Civil</label>
+                <select
+                  class="form-control"
+                  id="civilStatus"
+                  required
+                  data-validation-required-message="Seleccione su estado civil"
+                >
+                  <option value="" disabled selected>
+                    Seleccione estado civil
+                  </option>
+                  <option value="Soltero">Soltero</option>
+                  <option value="Soltera">Soltera</option>
+                  <option value="Casado">Casado</option>
+                  <option value="Casada">Casada</option>
+                  <option value="Viudo">Viudo</option>
+                  <option value="Viuda">Viuda</option>
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+
+              <div class="control-group">
+                <label for="nationality">Nacionalidad</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nationality"
+                  placeholder="Nacionalidad"
+                  required
+                  data-validation-required-message="Ingrese su nacionalidad"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+
+              <div class="control-group">
+                <label for="functions">Funciones</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="functions"
+                  placeholder="Funciones"
+                  required
+                  data-validation-required-message="Ingrese sus funciones"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+
+              <div class="control-group">
+                <label for="afp">AFP</label>
+                <select
+                  class="form-control"
+                  id="afp"
+                  required
+                  data-validation-required-message="Seleccione su AFP"
+                >
+                  <option value="" disabled selected>Seleccione AFP</option>
+                  <option value="AFP Uno">AFP Uno</option>
+                  <option value="AFP Modelo">AFP Modelo</option>
+                  <option value="AFP Habitat">AFP Habitat</option>
+                  <option value="AFP Sta Maria">AFP Sta Maria</option>
+                  <option value="AFP PlanVital">AFP PlanVital</option>
+                  <option value="AFP Provida">AFP Provida</option>
+                  <option value="AFP Capital">AFP Capital</option>
+                  <option value="AFP Cuprum">AFP Cuprum</option>
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">
+                <label for="health">Sistema de Salud</label>
+                <select
+                  class="form-control"
+                  id="health"
+                  required
+                  data-validation-required-message="Seleccione su sistema de salud"
+                >
+                  <option value="" disabled selected>Seleccione Salud</option>
+                  <option value="FONASA">FONASA</option>
+                  <option value="ISAPRE">ISAPRE</option>
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div>
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  id="generatePdfButton"
+                >
+                  📄 Generar Contrato PDF
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact End -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+</div>
