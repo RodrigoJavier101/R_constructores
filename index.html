@@ -182,6 +182,62 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    <script>
+      // Mapeo de hash a archivos
+      const pages = {
+        "#inicio": "/home.html",
+        "#nosotros": "/nosotros.html",
+        "#servicios": "/servicios.html",
+        "#equipo": "/equipo.html",
+        "#proyectos": "/proyectos.html",
+        "#documentos": "/documentos.html", // o un archivo específico para documentos
+      };
+
+      function loadContent(hash) {
+        const contentDiv = document.getElementById("content");
+        const url = pages[hash] || "pages/home.html";
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) throw new Error("Página no encontrada");
+            return response.text();
+          })
+          .then((html) => {
+            contentDiv.innerHTML = html;
+          })
+          .catch((err) => {
+            contentDiv.innerHTML = `
+          <div class="container">
+            <div class="alert alert-danger">Error al cargar el contenido: ${err.message}</div>
+          </div>
+        `;
+          });
+      }
+
+      // Manejar carga inicial
+      window.addEventListener("DOMContentLoaded", () => {
+        const hash = location.hash || "#inicio";
+        setActiveLink(hash);
+        loadContent(hash);
+      });
+
+      // Manejar cambio de hash
+      window.addEventListener("hashchange", () => {
+        const hash = location.hash || "#inicio";
+        setActiveLink(hash);
+        loadContent(hash);
+      });
+
+      // Actualizar clase activa
+      function setActiveLink(hash) {
+        document
+          .querySelectorAll(".nav-link")
+          .forEach((el) => el.classList.remove("active"));
+        const activeLink = document.querySelector(`[href="${hash}"]`);
+        if (activeLink) activeLink.classList.add("active");
+      }
+    </script>
+
     <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -528,63 +584,5 @@ OCTAVO: Se deja constancia de que EL TRABAJADOR ingresó a la Empresa el ${fecha
         }
       });
     </script>
-
-    <script>
-      // Mapeo de hash a archivos
-      const pages = {
-        "#inicio": "pages/home.html",
-        "#nosotros": "pages/nosotros.html",
-        "#servicios": "pages/servicios.html",
-        "#equipo": "pages/equipo.html",
-        "#proyectos": "pages/proyectos.html",
-        "#documentos": "pages/documentos.html", // o un archivo específico para documentos
-      };
-
-      function loadContent(hash) {
-        const contentDiv = document.getElementById("content");
-        const url = pages[hash] || "pages/home.html";
-
-        fetch(url)
-          .then((response) => {
-            if (!response.ok) throw new Error("Página no encontrada");
-            return response.text();
-          })
-          .then((html) => {
-            contentDiv.innerHTML = html;
-          })
-          .catch((err) => {
-            contentDiv.innerHTML = `
-          <div class="container">
-            <div class="alert alert-danger">Error al cargar el contenido: ${err.message}</div>
-          </div>
-        `;
-          });
-      }
-
-      // Manejar carga inicial
-      window.addEventListener("DOMContentLoaded", () => {
-        const hash = location.hash || "#inicio";
-        setActiveLink(hash);
-        loadContent(hash);
-      });
-
-      // Manejar cambio de hash
-      window.addEventListener("hashchange", () => {
-        const hash = location.hash || "#inicio";
-        setActiveLink(hash);
-        loadContent(hash);
-      });
-
-      // Actualizar clase activa
-      function setActiveLink(hash) {
-        document
-          .querySelectorAll(".nav-link")
-          .forEach((el) => el.classList.remove("active"));
-        const activeLink = document.querySelector(`[href="${hash}"]`);
-        if (activeLink) activeLink.classList.add("active");
-      }
-    </script>
-
-    
   </body>
 </html>
